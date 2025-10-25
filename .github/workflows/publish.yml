@@ -20,7 +20,7 @@ jobs:
     
     # INJEÇÃO DO SEGREDO COMO VARIÁVEL DE AMBIENTE (Crucial para o fix)
     env:
-      ACTION_DEPLOY_KEY: ${{ secrets.HUGO_DEPLOY }} # Certifique-se que 'HUGO_DEPLOY' é o nome exato do seu Segredo!
+      GITHUB_TOKEN: ${{ secrets.HUGO_DEPLOY }} # Certifique-se que 'HUGO_DEPLOY' é o nome exato do seu Segredo!
     
     steps:
       - name: Checkout Source Code
