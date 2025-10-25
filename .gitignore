@@ -1,0 +1,11 @@
+public/
+.hugo_build.lock
+.hugo_build.lock*
+resources/_gen/
+.cache/
+.vscode/
+.obsidian/
+node_modules/
+package-lock.json
+.DS_Store
+Thumbs.db

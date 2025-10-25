@@ -1,0 +1,27 @@
+{{ define "main" }}
+    {{ partial "author_header.html" . }}  <article>
+        <h1>{{ .Title }}</h1>
+        {{ .Content }} 
+        
+    </article>
+
+    <div class="post-navigation">
+        
+        {{ with .PrevInSection }}
+            <div class="nav-prev">
+                <a href="{{ .Permalink }}">&larr; back</a>
+            </div>
+        {{ else }}
+            <div class="nav-prev">
+                <a href="{{ "/" }}">home</a>
+            </div>
+        {{ end }}
+
+        {{ with .NextInSection }}
+            <div class="nav-next">
+                <a href="{{ .Permalink }}">next</a>
+            </div>
+        {{ end }}
+
+    </div>
+{{ end }}
