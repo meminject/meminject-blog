@@ -1,12 +1,15 @@
 name: Build and Deploy Hugo Site to User Pages
 
 on:
+  # Trigger the workflow on push to the main branch
   push:
     branches:
       - main
   
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# Set permissions for the GitHub Actions token (mantenha 'write' para que a action possa escrever)
 permissions:
   contents: write
   id-token: write
@@ -14,6 +17,10 @@ permissions:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    
+    # INJEÇÃO DO SEGREDO COMO VARIÁVEL DE AMBIENTE (Crucial para o fix)
+    env:
+      ACTION_DEPLOY_KEY: ${{ secrets.HUGO_DEPLOY }} # Certifique-se que 'HUGO_DEPLOY' é o nome exato do seu Segredo!
     
     steps:
       - name: Checkout Source Code
@@ -36,12 +43,15 @@ jobs:
       - name: Build Hugo Site
         run: hugo --minify 
         
+      # Deploy to the target repository using the injected environment variable
       - name: Deploy to GitHub Pages (User Repo)
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.HUGO_DEPLOY }}
+          # Token injetado via 'env:'. REMOVA o 'github_token' daqui para usar a variável de ambiente.
           
+          # TARGET REPOSITORY: Mantenha esta linha correta.
           external_repository: meminject/meminject.github.io 
+          
           publish_branch: main 
           publish_dir: ./public 
           force_orphan: true
