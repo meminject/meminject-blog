@@ -39,8 +39,8 @@ jobs:
       - name: Deploy to GitHub Pages (User Repo)
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} 
-          external_repository: seu-usuario/seu-usuario.github.io 
+          github_token: ${{ secrets.DEPLOY_TOKEN }} 
+          external_repository: meminject/meminject.github.io 
           publish_branch: main 
           publish_dir: ./public 
           force_orphan: true
